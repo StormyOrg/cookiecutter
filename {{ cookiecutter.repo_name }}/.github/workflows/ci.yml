@@ -1,0 +1,35 @@
+name: Lint and Test
+
+on: [push, pull_request]
+
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    name: Lint and test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Install dependencies
+        run: |
+          pip3 install wheel --upgrade
+          pip3 install .[dev]
+
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-file
+
+      - name: Test with pytest
+        run: pytest tests --cov={{ cookiecutter.package_name }} --disable-warnings --cov-report html
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage-report
+          path: htmlcov/
+          retention-days: 90

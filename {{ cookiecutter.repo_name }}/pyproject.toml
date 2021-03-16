@@ -1,0 +1,26 @@
+[build-system]
+# Minimum requirements for the build system to execute. (see https://www.python.org/dev/peps/pep-0518/)
+requires = ["setuptools", "wheel"]  # PEP 508 specifications.
+
+[tool.black]
+line-length = 110
+target-version = ['py38']
+
+[tool.bumpver]
+current_version = "0.0.1"
+version_pattern = "MAJOR.MINOR.PATCH[PYTAGNUM]"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"',
+]
+"setup.py" = [
+    'version="{version}"'
+]
+"Makefile" = [
+    'VERSION := {version}'
+]

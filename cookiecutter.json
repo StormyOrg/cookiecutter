@@ -1,0 +1,10 @@
+{
+  "project": [
+    "SIAM2021"
+  ],
+  "repo_name": "repository-name",
+  "package_name": "{{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "git_url": "git@github.com:SIAM2021/{{ cookiecutter.repo_name }}",
+  "description": "A short description of the project.",
+  "create_dockerfile": "y"
+}

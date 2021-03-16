@@ -1,0 +1,29 @@
+ARG MINICONDA_VERSION=3.8
+FROM godatadriven/miniconda:${MINICONDA_VERSION}
+
+ONBUILD ADD Dockerfile packages.tx[t] build.s[h] /dependencies/
+ONBUILD RUN set -x\
+            && apt-get update \
+            && apt-get install -y gcc g++\
+            && if [ -f /dependencies/packages.txt ]; then\
+                apt-get install -y $(awk '/^\s*[^#]/' /dependencies/packages.txt | sed 's/\r//g');\
+               fi\
+            && if [ -f /dependencies/build.sh ]; then\
+                bash /dependencies/build.sh;\
+               fi\
+            && apt-get purge -y --auto-remove gcc g++\
+            && apt-get clean
+
+ENV PYTHONUNBUFFERED true
+ENV PYTHONDONTWRITEBYTECODE 1
+
+WORKDIR /app
+
+COPY {{ cookiecutter.package_name }} {{ cookiecutter.package_name }}
+COPY setup.py setup.py
+COPY README.md README.md
+
+RUN pip install --no-cache-dir /app/.
+
+ENTRYPOINT ["python", "/app/{{ cookiecutter.package_name }}/main.py"]
+CMD [""]
