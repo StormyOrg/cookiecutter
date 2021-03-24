@@ -23,6 +23,6 @@ The cookie-cutter template requires a few configuration parameters:
 ### To start a new project, run:
 ------------
 
-    cookiecutter git@github.com:SIAM2021/cookiecutter.git
+    cookiecutter git@github.com:StormyOrg/cookiecutter.git
 	make env
 	make install
