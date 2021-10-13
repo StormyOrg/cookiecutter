@@ -55,7 +55,7 @@ dist_release: bump_release dist_build
 
 .PHONY: env
 env:
-	pyenv virtualenv 3.8.6 {{ cookiecutter.repo_name }}
+	pyenv virtualenv 3.8.12 {{ cookiecutter.repo_name }}
 	pyenv local {{ cookiecutter.repo_name }}
 
 .PHONY: install

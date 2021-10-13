@@ -16,13 +16,15 @@ setup(
     ],
     extras_require={
         "dev": [
-            "pre-commit>=2.9.3",
-            "pytest>=6.2.1",
-            "pytest-cov>=2.10.1",
-            "bumpver>=2021.1109",
-            "black>=20.8b1",
-            "mypy>=0.812",
-            "flake8>=3.9.0"
+            "pre-commit>=2.15.0",
+            "pytest>=6.2.5",
+            "pytest-cov>=2.12.1",
+            "bumpver>=2021.1113",
+            "flask>=1.1.4<2.0",
+            "black==21.9b0",
+            "flake8==3.9.2",
+            "mypy==0.910",
+            "types-requests>=2.25.8",
         ],
     },
     python_requires=">=3.8",
